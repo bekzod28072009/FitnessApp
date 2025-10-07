@@ -1,9 +1,15 @@
 ﻿using AutoMapper;
 using FitnessApp.Domain.Entities.Auth;
+using FitnessApp.Domain.Entities.Nutrition;
 using FitnessApp.Domain.Entities.Users;
+using FitnessApp.Service.DTOs.FoodItemsDto;
+using FitnessApp.Service.DTOs.MealsDto;
+using FitnessApp.Service.DTOs.MealsItemDto;
+using FitnessApp.Service.DTOs.MealsPlanDto;
 using FitnessApp.Service.DTOs.PermissionsDto;
 using FitnessApp.Service.DTOs.RolesDto;
 using FitnessApp.Service.DTOs.TokensDto;
+using FitnessApp.Service.DTOs.UserMealLogsDto;
 using FitnessApp.Service.DTOs.UsersDto;
 
 namespace FitnessApp.API.Configurations;
@@ -41,6 +47,30 @@ public class MapConfiguration : Profile
         CreateMap<TokenForCreationDto, Token>().ReverseMap();  
         CreateMap<TokenForUpdateDto, Token>().ReverseMap();
         CreateMap<TokenForViewDto, Token>().ReverseMap();
-    }
 
+        //FoodItems
+        CreateMap<FoodItemForCreationDto, FoodItem>().ReverseMap();
+        CreateMap<FoodItemForUpdateDto, FoodItem>().ReverseMap();
+        CreateMap<FoodItemForViewDto, FoodItem>().ReverseMap();
+
+        //MealItems
+        CreateMap<MealItemForCreationDto, MealItem>().ReverseMap();
+        CreateMap<MealItemForUpdateDto, MealItem>().ReverseMap();
+        CreateMap<MealItemForViewDto, MealItem>().ReverseMap();
+
+        //Meal
+        CreateMap<MealForCreationDto, Meal>().ReverseMap();
+        CreateMap<MealForUpdateDto, Meal>().ReverseMap();
+        CreateMap<MealForViewDto, Meal>().ReverseMap();
+
+        //MealPlan
+        CreateMap<MealPlanForCreationDto, MealPlan>().ReverseMap();
+        CreateMap<MealPlanForUpdateDto, MealPlan>().ReverseMap();
+        CreateMap<MealPlanForViewDto, MealPlan>().ReverseMap();
+
+        //UserMealLog
+        CreateMap<UserMealLogForCreationDto, UserMealLog>().ReverseMap();
+        CreateMap<UserMealLogForUpdateDto, UserMealLog>().ReverseMap();
+        CreateMap<UserMealLogForViewDto, UserMealLog>().ReverseMap();
+    }
 }

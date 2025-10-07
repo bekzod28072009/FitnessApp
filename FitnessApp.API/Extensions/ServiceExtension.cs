@@ -17,11 +17,18 @@ public static class ServiceExtension
 
         //service
         services.AddScoped<IAuthService, AuthService>();
-
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IRoleService, RoleService>();
         services.AddScoped<IPermissionService, PermissionService>();
         services.AddScoped<ITokenService, TokenService>();
+
+        //Nutrition
+        services.AddScoped<IFoodItemService, FoodItemService>();
+        services.AddScoped<IMealItemService, MealItemService>();
+        services.AddScoped<IMealService, MealService>();
+        services.AddScoped<IMealPlanService, MealPlanService>();
+        services.AddScoped<IUserMealLogService, UserMealLogService>();
+
     }
 
     public static void AddJwtService(this IServiceCollection services, IConfiguration configuration)
