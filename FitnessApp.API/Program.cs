@@ -4,9 +4,7 @@ using FitnessApp.DataAccess.AppDBContetxs;
 using FitnessApp.Service.Helpers;
 using FitnessApp.Service.IService;
 using FitnessApp.Service.Seeders;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using System.Text.Json.Serialization;
 

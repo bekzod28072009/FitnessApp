@@ -3,6 +3,7 @@ using System;
 using FitnessApp.DataAccess.AppDBContetxs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FitnessApp.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251007112617_InitialCreate3")]
+    partial class InitialCreate3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -210,9 +213,6 @@ namespace FitnessApp.DataAccess.Migrations
                     b.Property<Guid?>("DeletedBy")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("MealPlanId")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Notes")
                         .HasColumnType("text");
 
@@ -243,9 +243,7 @@ namespace FitnessApp.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MealPlanId");
-
-                    b.ToTable("Meals");
+                    b.ToTable("Meal");
                 });
 
             modelBuilder.Entity("FitnessApp.Domain.Entities.Nutrition.MealItem", b =>
@@ -303,119 +301,6 @@ namespace FitnessApp.DataAccess.Migrations
                     b.HasIndex("MealId");
 
                     b.ToTable("MealItems");
-                });
-
-            modelBuilder.Entity("FitnessApp.Domain.Entities.Nutrition.MealPlan", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<int?>("DailyCaloriesTarget")
-                        .HasColumnType("integer");
-
-                    b.Property<decimal?>("DailyCarbsTargetGrams")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal?>("DailyFatTargetGrams")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal?>("DailyProteinTargetGrams")
-                        .HasColumnType("numeric");
-
-                    b.Property<Guid?>("DeletedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.Property<int>("DurationDays")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Goal")
-                        .HasColumnType("integer");
-
-                    b.Property<bool>("IsPublic")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("UpdatedBy")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MealPlans");
-                });
-
-            modelBuilder.Entity("FitnessApp.Domain.Entities.Nutrition.UserMealLog", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Calories")
-                        .HasColumnType("integer");
-
-                    b.Property<decimal>("CarbsGrams")
-                        .HasColumnType("numeric");
-
-                    b.Property<DateTime>("ConsumedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("DeletedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<decimal>("FatGrams")
-                        .HasColumnType("numeric");
-
-                    b.Property<Guid?>("FoodItemId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("MealId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("MealPlanId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Notes")
-                        .HasColumnType("text");
-
-                    b.Property<decimal>("ProteinGrams")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("QuantityServings")
-                        .HasColumnType("numeric");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("UpdatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserMealLogs");
                 });
 
             modelBuilder.Entity("FitnessApp.Domain.Entities.Users.User", b =>
@@ -505,13 +390,6 @@ namespace FitnessApp.DataAccess.Migrations
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("FitnessApp.Domain.Entities.Nutrition.Meal", b =>
-                {
-                    b.HasOne("FitnessApp.Domain.Entities.Nutrition.MealPlan", null)
-                        .WithMany("Meals")
-                        .HasForeignKey("MealPlanId");
-                });
-
             modelBuilder.Entity("FitnessApp.Domain.Entities.Nutrition.MealItem", b =>
                 {
                     b.HasOne("FitnessApp.Domain.Entities.Nutrition.FoodItem", "FoodItem")
@@ -565,11 +443,6 @@ namespace FitnessApp.DataAccess.Migrations
             modelBuilder.Entity("FitnessApp.Domain.Entities.Nutrition.Meal", b =>
                 {
                     b.Navigation("MealItems");
-                });
-
-            modelBuilder.Entity("FitnessApp.Domain.Entities.Nutrition.MealPlan", b =>
-                {
-                    b.Navigation("Meals");
                 });
 #pragma warning restore 612, 618
         }
