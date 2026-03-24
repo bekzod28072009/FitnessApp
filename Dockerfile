@@ -16,4 +16,4 @@ WORKDIR /app
 COPY --from=build /app/out ./
 
 # Set the entrypoint
-ENTRYPOINT ["dotnet", "YourProjectName.dll"]
+ENTRYPOINT ["dotnet", "FitnessApp.sln"]
